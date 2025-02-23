@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materials - English Trove</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                English Trove
+            </div>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search materials...">
+                <button id="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="materials.html" class="active">Materials</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PDF Preview Modal -->
+    <div id="pdf-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="pdf-preview-container">
+                <canvas id="pdf-preview"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <main class="materials-page">
+        <section class="page-header">
+            <h1>Teaching Materials</h1>
+            <p class="section-description">Access and download high-quality teaching resources</p>
+            <div class="refresh-section">
+                <button id="refresh-button" class="cta-button" onclick="refreshAllMaterials()">
+                    <i class="fas fa-sync-alt"></i> Refresh Materials
+                </button>
+            </div>
+        </section>
+        
+        <section id="grammar" class="material-section">
+            <div class="section-header">
+                <i class="fas fa-book"></i>
+                <h2>Grammar Resources</h2>
+            </div>
+            <div id="grammar-files" class="files-container">
+                <p class="no-files">Loading files...</p>
+            </div>
+        </section>
+
+        <section id="vocabulary" class="material-section">
+            <div class="section-header">
+                <i class="fas fa-language"></i>
+                <h2>Vocabulary Building</h2>
+            </div>
+            <div id="vocabulary-files" class="files-container">
+                <p class="no-files">Loading files...</p>
+            </div>
+        </section>
+
+        <section id="speaking" class="material-section">
+            <div class="section-header">
+                <i class="fas fa-comments"></i>
+                <h2>Speaking Activities</h2>
+            </div>
+            <div id="speaking-files" class="files-container">
+                <p class="no-files">Loading files...</p>
+            </div>
+        </section>
+
+        <section id="writing" class="material-section">
+            <div class="section-header">
+                <i class="fas fa-pen-fancy"></i>
+                <h2>Writing Tasks</h2>
+            </div>
+            <div id="writing-files" class="files-container">
+                <p class="no-files">Loading files...</p>
+            </div>
+        </section>
+
+        <section id="lesson-plans" class="material-section">
+            <div class="section-header">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h2>Lesson Plans</h2>
+            </div>
+            <div id="lesson-plans-files" class="files-container">
+                <p class="no-files">Loading files...</p>
+            </div>
+        </section>
+
+        <section id="worksheets" class="material-section">
+            <div class="section-header">
+                <i class="fas fa-file-alt"></i>
+                <h2>Worksheets</h2>
+            </div>
+            <div id="worksheets-files" class="files-container">
+                <p class="no-files">Loading files...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-book-open"></i>
+                English Trove
+            </div>
+            <p>&copy; 2025 English Trove. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "english-trove",
+  "version": "1.0.0",
+  "description": "English Language Teaching materials website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
