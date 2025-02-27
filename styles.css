@@ -81,21 +81,22 @@ nav {
     align-items: center;
     gap: 0.5rem;
     margin: 0 1rem;
+    position: relative;
 }
 
 #search-input {
-    padding: 0.5rem 1rem;
+    padding: 0.7rem 1.2rem;
+    width: 250px;
+    transition: all 0.3s ease;
     border: 2px solid var(--background-color);
     border-radius: 20px;
-    font-size: 0.9rem;
-    width: 200px;
-    transition: var(--transition);
 }
 
 #search-input:focus {
-    outline: none;
+    width: 300px;
     border-color: var(--primary-color);
-    width: 250px;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    outline: none;
 }
 
 #search-button {
@@ -417,94 +418,206 @@ footer {
     margin-top: 2rem;
 }
 
-.material-section {
+/* Collapsible section styles with higher specificity */
+body .material-section {
     background-color: var(--white);
-    border-radius: 12px;
-    padding: 2rem;
-    margin-bottom: 2rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
     box-shadow: var(--shadow);
+    overflow: hidden;
     transition: var(--transition);
 }
 
-.material-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-}
-
-.section-header {
+body .section-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--background-color);
+    padding: 1rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
 }
 
-.section-header i {
-    font-size: 2rem;
-    color: var(--primary-color);
+body .section-header i {
+    margin-right: 1rem;
+    font-size: 1.5rem;
 }
 
-.section-header h2 {
+body .section-header h2 {
     margin: 0;
-    color: var(--secondary-color);
-    font-size: 1.8rem;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
-.files-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+body .section-header .toggle-icon {
+    position: absolute;
+    right: 1.5rem;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
 }
 
+body .material-section.collapsed .toggle-icon {
+    transform: rotate(-90deg) !important;
+}
+
+body .files-container {
+    max-height: 500px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    padding: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+}
+
+body .material-section.collapsed .files-container {
+    max-height: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    margin: 0 !important;
+    border: none !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+/* Replace all duplicate .file-content definitions with this one consolidated version */
+.file-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+    max-width: calc(100% - 200px) !important;
+    overflow: hidden !important;
+    padding-right: 10px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; 
+    align-items: flex-start !important;
+    margin: 0 !important;
+    height: 100% !important;
+}
+
+/* Replace all duplicate .file-item definitions with this one consolidated version */
 .file-item {
     background-color: var(--background-color);
     border-radius: 8px;
-    padding: 1rem;
+    padding: 0.8rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: var(--transition);
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    min-height: 64px !important; /* Increased to give more vertical space */
+    width: 100%;
+    overflow: hidden;
+    gap: 15px;
+    position: relative;
+    box-sizing: border-box;
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: transparent;
 }
 
 .file-item:hover {
-    background-color: #e9ecef;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
     transform: translateY(-2px);
 }
 
-.file-name {
-    flex: 1;
-    margin-right: 1rem;
-    font-size: 0.95rem;
-    color: var(--text-color);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+/* Add subtle alternating background colors for adjacent items with similar names */
+.file-item:nth-child(odd) {
+    background-color: var(--background-color);
 }
 
+.file-item:nth-child(even) {
+    background-color: rgba(243, 244, 246, 0.5);
+}
+
+/* Button container vertical alignment */
 .button-container {
     display: flex;
-    gap: 0.5rem;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    min-width: 180px;
+    width: 180px;
+    flex-shrink: 0;
+    align-self: center;
+    height: 100%;
+    padding: 0;
 }
 
-.preview-button, .download-button {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+/* Replace all duplicate .file-name definitions with this one consolidated version */
+.file-name {
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0 0 0.2rem 0 !important;
+    padding: 2px 0;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    max-width: 100% !important;
+    position: relative !important;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+}
+
+/* File name hover effect to show full name */
+.file-name:hover {
+    overflow: visible !important;
+    white-space: normal !important;
+    z-index: 10 !important;
+    background-color: var(--white) !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    padding: 4px !important;
+    max-width: fit-content !important;
+    font-weight: 600;
+}
+
+/* File description styling improvements */
+.file-description {
     font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.3;
+}
+
+/* Button styling improvements */
+.details-button, .download-button {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    border: 1px solid;
+    background: white;
     cursor: pointer;
-    transition: var(--transition);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    white-space: nowrap;
+    height: 32px;
 }
 
-.preview-button {
+.details-button i, .download-button i {
+    font-size: 0.8rem;
+}
+
+.details-button {
     background-color: var(--white);
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
 }
 
-.preview-button:hover {
+.details-button:hover {
     background-color: var(--primary-color);
     color: var(--white);
 }
@@ -513,7 +626,6 @@ footer {
     background-color: var(--white);
     border: 1px solid var(--secondary-color);
     color: var(--secondary-color);
-    text-decoration: none;
 }
 
 .download-button:hover {
@@ -521,12 +633,52 @@ footer {
     color: var(--white);
 }
 
-.no-files {
-    text-align: center;
-    color: var(--text-light);
-    padding: 2rem;
-    font-style: italic;
-    grid-column: 1 / -1;
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .file-content {
+        max-width: 100% !important;
+        margin-bottom: 0.5rem;
+        padding-right: 0;
+    }
+    
+    .file-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 0.9rem 1rem;
+        min-height: auto !important;
+    }
+    
+    .button-container {
+        width: 100%;
+        min-width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        align-self: center;
+    }
+    
+    .details-button, .download-button {
+        width: calc(50% - 4px);
+        font-size: 0.8rem;
+        padding: 0.4rem 0.5rem;
+    }
+    
+    .file-name {
+        font-size: 0.95rem;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    .file-name:hover {
+        white-space: normal !important;
+    }
+    
+    .file-description {
+        font-size: 0.85rem;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
 }
 
 /* Search Result Highlighting */
@@ -543,23 +695,61 @@ footer {
 }
 
 .search-highlight {
-    background-color: rgba(37, 99, 235, 0.2);
+    background-color: rgba(239, 68, 68, 0.3);
+    color: #111;
+    font-weight: 600;
     padding: 0 2px;
     border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.5);
 }
 
 .search-results-summary {
     background-color: var(--background-color);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     margin: 1rem 0;
     border-radius: 8px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .search-results-summary .count {
     font-weight: 600;
     color: var(--primary-color);
+}
+
+.clear-search {
+    background-color: var(--white);
+    border: 1px solid var(--text-light);
+    color: var(--text-light);
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.clear-search:hover {
+    background-color: var(--text-light);
+    color: var(--white);
+}
+
+.has-search-results .section-header {
+    background-color: var(--secondary-color);
+    position: relative;
+}
+
+.has-search-results .section-header::after {
+    content: "Contains matches";
+    position: absolute;
+    right: 3rem;
+    font-size: 0.8rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
 }
 
 .no-results-message {
@@ -647,4 +837,671 @@ footer {
     margin: 10px 0;
     font-style: italic;
     color: #666;
+}
+
+/* Material Detail Page Styles */
+.material-detail-page {
+    padding-top: 6rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 6rem 2rem 2rem;
+}
+
+.back-button {
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.back-link:hover {
+    color: var(--secondary-color);
+}
+
+.material-container {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.material-info {
+    margin-bottom: 2rem;
+}
+
+.material-info h1 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.material-metadata {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.metadata-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.metadata-item i {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.metadata-item p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+.metadata-item span {
+    color: var(--text-color);
+    font-weight: 500;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.download-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+}
+
+.download-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.print-button {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.print-button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.pdf-container {
+    width: 100%;
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 8px;
+    position: relative;
+}
+
+.pdf-controls {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.zoom-button {
+    background-color: var(--white);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.zoom-button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+#pdf-canvas {
+    display: block;
+    margin: 0 auto;
+    box-shadow: var(--shadow);
+    background-color: var(--white);
+}
+
+/* File item button styles */
+.button-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.details-button, .preview-button, .download-button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.details-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+}
+
+.details-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+/* Materials Page Specific Styles */
+.materials-hero {
+    background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(59, 130, 246, 0.9));
+    color: var(--white);
+    text-align: center;
+    padding: 4rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.materials-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.materials-hero .hero-text {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.material-section {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-header i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.section-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+/* File Item Styles */
+.file-item {
+    background: var(--background-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.file-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.file-name {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.file-details {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+.file-details span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.file-details i {
+    font-size: 0.9rem;
+}
+
+.button-container {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.view-button,
+.download-button,
+.delete-button {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.view-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+}
+
+.view-button:hover {
+    background-color: var(--secondary-color);
+}
+
+.download-button {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    text-decoration: none;
+}
+
+.download-button:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.delete-button {
+    background-color: var(--white);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 0.4rem;
+}
+
+.delete-button:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+
+/* Material Detail Page */
+.detail-page {
+    max-width: 1200px;
+    margin: 6rem auto 2rem;
+    padding: 0 2rem;
+}
+
+.material-details {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.material-details h2 {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.file-metadata {
+    background: var(--background-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.file-metadata p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+}
+
+.file-metadata p:last-child {
+    margin-bottom: 0;
+}
+
+.file-metadata i {
+    color: var(--primary-color);
+    width: 20px;
+}
+
+.preview-container {
+    background: var(--background-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pdf-preview {
+    max-width: 100%;
+    height: auto;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.back-button {
+    background-color: var(--text-light);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.back-button:hover {
+    background-color: var(--text-color);
+}
+
+.action-buttons .download-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+}
+
+/* Materials container */
+.materials-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+/* File loading and error states */
+.loading, .error, .no-files, .no-results {
+    padding: 1rem;
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+.error {
+    color: #d9534f;
+}
+
+/* File content */
+.file-content {
+    flex: 1;
+    overflow: hidden;
+}
+
+.file-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* File item hover enhancements */
+.file-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Search highlighting */
+.search-highlight {
+    background-color: rgba(var(--primary-rgb), 0.2);
+    font-weight: bold;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .material-section {
+        padding: 0.5rem;
+    }
+    
+    .section-header {
+        padding: 0.75rem;
+    }
+    
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .button-container {
+        width: 100%;
+        margin-top: 0.5rem;
+        justify-content: space-between;
+    }
+    
+    .details-button, .download-button {
+        flex: 1;
+        margin: 0 0.25rem;
+    }
+}
+
+/* Improved search suggestions dropdown */
+.search-suggestions {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1050; /* Higher z-index to ensure it appears above other elements */
+    border: 2px solid var(--primary-color);
+}
+
+.suggestion-item {
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--background-color);
+    transition: all 0.2s ease;
+    margin: 0;
+    overflow: hidden;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+    background-color: rgba(37, 99, 235, 0.08);
+}
+
+.suggestion-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.suggestion-text {
+    font-weight: 500;
+    font-size: 0.95rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 70%;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.suggestion-category {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    background-color: var(--background-color);
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.suggestion-highlight {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: var(--text-color);
+    font-weight: 600;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+.suggestion-no-results {
+    padding: 0.7rem 1.2rem;
+    text-align: center;
+    color: var(--text-light);
+    font-style: italic;
+}
+
+/* Fixed files container for vertical scrolling only */
+body .files-container {
+    max-height: 500px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    width: 100% !important;
+    padding: 1rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.8rem !important;
+}
+
+/* Ensure file items don't overflow horizontally */
+.file-item {
+    width: 100% !important;
+    flex-wrap: wrap !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+/* Style for the selected search result */
+.file-item.search-selected {
+    background-color: rgba(37, 99, 235, 0.1);
+    border: 2px solid var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+}
+
+/* Add visual indicators for different levels */
+.file-item[data-level^="A1"] {
+    border-left: 4px solid #4ade80; /* Green for beginner A1 */
+}
+
+.file-item[data-level^="A2"] {
+    border-left: 4px solid #a3e635; /* Light green for elementary A2 */
+}
+
+.file-item[data-level^="B1"] {
+    border-left: 4px solid #facc15; /* Yellow for intermediate B1 */
+}
+
+.file-item[data-level^="B2"] {
+    border-left: 4px solid #fb923c; /* Orange for upper intermediate B2 */
+}
+
+.file-item[data-level^="C1"] {
+    border-left: 4px solid #f87171; /* Red for advanced C1 */
+}
+
+.file-item[data-level^="C2"] {
+    border-left: 4px solid #f43f5e; /* Pink for proficiency C2 */
+}
+
+/* Make hover effect maintain the level color but brighten it */
+.file-item[data-level^="A1"]:hover {
+    border-left-color: #22c55e;
+    background-color: rgba(74, 222, 128, 0.05);
+}
+
+.file-item[data-level^="A2"]:hover {
+    border-left-color: #84cc16;
+    background-color: rgba(163, 230, 53, 0.05);
+}
+
+.file-item[data-level^="B1"]:hover {
+    border-left-color: #eab308;
+    background-color: rgba(250, 204, 21, 0.05);
+}
+
+.file-item[data-level^="B2"]:hover {
+    border-left-color: #f97316;
+    background-color: rgba(251, 146, 60, 0.05);
+}
+
+.file-item[data-level^="C1"]:hover {
+    border-left-color: #ef4444;
+    background-color: rgba(248, 113, 113, 0.05);
+}
+
+.file-item[data-level^="C2"]:hover {
+    border-left-color: #e11d48;
+    background-color: rgba(244, 63, 94, 0.05);
+}
+
+/* Keep the alternating background but make it more subtle */
+.file-item:nth-child(odd) {
+    background-color: var(--background-color);
+}
+
+.file-item:nth-child(even) {
+    background-color: rgba(243, 244, 246, 0.5);
 }

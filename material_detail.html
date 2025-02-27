@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Material Details - English Trove</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="scripts.js?v=1.1.0" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-book-open"></i>
+                English Trove
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="materials.html">Materials</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="material-detail-page">
+        <div class="material-container">
+            <div class="back-button">
+                <a href="materials.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Materials
+                </a>
+            </div>
+            
+            <div class="material-info">
+                <h1 id="material-title">Loading...</h1>
+                <div class="material-metadata">
+                    <div class="metadata-item">
+                        <i class="fas fa-folder"></i>
+                        <p>Category: <span id="material-category">Loading...</span></p>
+                    </div>
+                    <div class="metadata-item">
+                        <i class="fas fa-file-alt"></i>
+                        <p>File Size: <span id="material-size">Loading...</span></p>
+                    </div>
+                    <div class="metadata-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>Last Modified: <span id="material-date">Loading...</span></p>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <a id="download-button" href="#" class="action-button download-button" download>
+                        <i class="fas fa-download"></i> Download PDF
+                    </a>
+                    <button id="print-button" class="action-button print-button">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+            
+            <div class="pdf-container">
+                <div class="pdf-controls">
+                    <button id="zoom-in" class="zoom-button"><i class="fas fa-search-plus"></i></button>
+                    <button id="zoom-out" class="zoom-button"><i class="fas fa-search-minus"></i></button>
+                </div>
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <i class="fas fa-book-open"></i>
+                English Trove
+            </div>
+            <p>&copy; 2025 English Trove. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

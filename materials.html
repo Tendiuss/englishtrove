@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>Materials - English Trove</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
@@ -10,7 +11,7 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="scripts.js" defer></script>
+    <script src="scripts.js?v=1.1.0" defer></script>
 </head>
 <body>
     <header>
@@ -44,75 +45,79 @@
     </div>
 
     <main class="materials-page">
-        <section class="page-header">
-            <h1>Teaching Materials</h1>
-            <p class="section-description">Access and download high-quality teaching resources</p>
-            <div class="refresh-section">
-                <button id="refresh-button" class="cta-button" onclick="refreshAllMaterials()">
+        <section class="hero materials-hero">
+            <div class="hero-content">
+                <h1>Teaching Materials</h1>
+                <p class="hero-text">Access and download high-quality teaching resources</p>
+                <button id="refresh-button" class="cta-button">
                     <i class="fas fa-sync-alt"></i> Refresh Materials
                 </button>
             </div>
         </section>
         
-        <section id="grammar" class="material-section">
-            <div class="section-header">
-                <i class="fas fa-book"></i>
-                <h2>Grammar Resources</h2>
-            </div>
-            <div id="grammar-files" class="files-container">
-                <p class="no-files">Loading files...</p>
-            </div>
-        </section>
+        <section id="file-list" class="file-list-container"></section>
 
-        <section id="vocabulary" class="material-section">
-            <div class="section-header">
-                <i class="fas fa-language"></i>
-                <h2>Vocabulary Building</h2>
+        <div class="materials-container">
+            <!-- Grammar section -->
+            <div id="grammar-section" class="material-section">
+                <div class="section-header" aria-expanded="true">
+                    <h2>Grammar Resources <i class="fas fa-chevron-down toggle-icon"></i></h2>
+                </div>
+                <div id="grammar-files" class="files-container">
+                    <p class="loading">Loading files...</p>
+                </div>
             </div>
-            <div id="vocabulary-files" class="files-container">
-                <p class="no-files">Loading files...</p>
-            </div>
-        </section>
 
-        <section id="speaking" class="material-section">
-            <div class="section-header">
-                <i class="fas fa-comments"></i>
-                <h2>Speaking Activities</h2>
+            <!-- Vocabulary section -->
+            <div id="vocabulary-section" class="material-section">
+                <div class="section-header" aria-expanded="true">
+                    <h2>Vocabulary Building <i class="fas fa-chevron-down toggle-icon"></i></h2>
+                </div>
+                <div id="vocabulary-files" class="files-container">
+                    <p class="loading">Loading files...</p>
+                </div>
             </div>
-            <div id="speaking-files" class="files-container">
-                <p class="no-files">Loading files...</p>
-            </div>
-        </section>
 
-        <section id="writing" class="material-section">
-            <div class="section-header">
-                <i class="fas fa-pen-fancy"></i>
-                <h2>Writing Tasks</h2>
+            <!-- Speaking section -->
+            <div id="speaking-section" class="material-section">
+                <div class="section-header" aria-expanded="true">
+                    <h2>Speaking Activities <i class="fas fa-chevron-down toggle-icon"></i></h2>
+                </div>
+                <div id="speaking-files" class="files-container">
+                    <p class="loading">Loading files...</p>
+                </div>
             </div>
-            <div id="writing-files" class="files-container">
-                <p class="no-files">Loading files...</p>
-            </div>
-        </section>
 
-        <section id="lesson-plans" class="material-section">
-            <div class="section-header">
-                <i class="fas fa-chalkboard-teacher"></i>
-                <h2>Lesson Plans</h2>
+            <!-- Writing section -->
+            <div id="writing-section" class="material-section">
+                <div class="section-header" aria-expanded="true">
+                    <h2>Writing Tasks <i class="fas fa-chevron-down toggle-icon"></i></h2>
+                </div>
+                <div id="writing-files" class="files-container">
+                    <p class="loading">Loading files...</p>
+                </div>
             </div>
-            <div id="lesson-plans-files" class="files-container">
-                <p class="no-files">Loading files...</p>
-            </div>
-        </section>
 
-        <section id="worksheets" class="material-section">
-            <div class="section-header">
-                <i class="fas fa-file-alt"></i>
-                <h2>Worksheets</h2>
+            <!-- Lesson Plans section -->
+            <div id="lesson-plans-section" class="material-section">
+                <div class="section-header" aria-expanded="true">
+                    <h2>Lesson Plans <i class="fas fa-chevron-down toggle-icon"></i></h2>
+                </div>
+                <div id="lesson-plans-files" class="files-container">
+                    <p class="loading">Loading files...</p>
+                </div>
             </div>
-            <div id="worksheets-files" class="files-container">
-                <p class="no-files">Loading files...</p>
+
+            <!-- Worksheets section -->
+            <div id="worksheets-section" class="material-section">
+                <div class="section-header" aria-expanded="true">
+                    <h2>Worksheets <i class="fas fa-chevron-down toggle-icon"></i></h2>
+                </div>
+                <div id="worksheets-files" class="files-container">
+                    <p class="loading">Loading files...</p>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>

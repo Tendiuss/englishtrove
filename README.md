@@ -12,3 +12,9 @@ English Trove is a minimalist website dedicated to providing English Language Te
 - HTML5
 - CSS3
 - JavaScript
+- Python Server
+
+## DONE
+- Server is done.
+- Search is done.
+- Material detail page is done.
